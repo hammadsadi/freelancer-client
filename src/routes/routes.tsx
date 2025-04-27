@@ -5,6 +5,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import Statistics from "../pages/Dashboard/Statistics/Statistics";
 import Clients from "../pages/ClientManagement/Clients";
 import CreateClient from "../pages/ClientManagement/CreateClient";
+import ProtectedRoutes from "../helper/ProtectedRoutes";
 
 //  Application Routes
 const routes = createBrowserRouter([
@@ -18,7 +19,11 @@ const routes = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <ProtectedRoutes>
+        <DashboardLayout />
+      </ProtectedRoutes>
+    ),
     children: [
       {
         index: true,
