@@ -1,12 +1,15 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 // User Data Type
 interface IUser {
   userId: string;
   email: string;
+  name: string;
+  createdAt: string;
+  id: string;
+  updatedAt: string;
 }
 // Auth Context Type
 type TAuthContext = {
@@ -24,14 +27,22 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     try {
       const fetchUser = async () => {
-        // const res = await axios.get("http://localhost:5000/api/v1/user/me", {
-        //   withCredentials: true,
-        // });
-        // console.log(res);
+        const { data } = await axios.get(
+          "http://localhost:5000/api/v1/user/me",
+          {
+            withCredentials: true,
+          }
+        );
+        if (data.success) {
+          setUser(data.data);
+        } else {
+          setUser(null);
+          logOut();
+        }
       };
       fetchUser();
     } catch (error) {
-      console.log(error);
+      setUser(null);
       logOut();
     }
   }, []);
