@@ -3,7 +3,10 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Statistics from "../pages/Dashboard/Statistics/Statistics";
+import Clients from "../pages/ClientManagement/Clients";
+import CreateClient from "../pages/ClientManagement/CreateClient";
 
+//  Application Routes
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +23,14 @@ const routes = createBrowserRouter([
       {
         index: true,
         element: <Statistics />,
+      },
+      {
+        path: "clients",
+        element: <Clients />,
+      },
+      {
+        path: "create-client",
+        element: <CreateClient />,
       },
     ],
   },

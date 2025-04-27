@@ -1,6 +1,12 @@
 import { AlarmClock, Folder, FolderCheck, User2 } from "lucide-react";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Statistics = () => {
+  const { user } = useContext(AuthContext);
+  if (user) {
+    console.log("ok", user);
+  }
   return (
     <div>
       <div className="mt-12">
